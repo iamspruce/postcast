@@ -1,0 +1,54 @@
+name: Daily podcast build
+
+on:
+  schedule:
+    # Adjust this cron to change cadence (runs Mondays + Fridays at 06:00 UTC).
+    - cron: "0 6 * * 1,5"
+  workflow_dispatch:
+    inputs:
+      lookback_hours:
+        description: "Override lookback hours for this run"
+        required: false
+        default: "96"
+      max_candidates:
+        description: "Override max candidates for this run"
+        required: false
+      episodes_per_run:
+        description: "Override episodes per run"
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Create .env file
+        env:
+          GH_ACTION_ENV: ${{ secrets.GH_ACTION_ENV }}
+        run: echo "$GH_ACTION_ENV" > .env
+
+      - run: npm install
+      - run: npm run build
+      - name: Run pipeline
+        run: |
+          # Only export overrides if provided via workflow_dispatch
+          if [ -n "${{ inputs.lookback_hours }}" ]; then export LOOKBACK_HOURS="${{ inputs.lookback_hours }}"; fi
+          if [ -n "${{ inputs.max_candidates }}" ]; then export MAX_CANDIDATES="${{ inputs.max_candidates }}"; fi
+          if [ -n "${{ inputs.episodes_per_run }}" ]; then export EPISODES_PER_RUN="${{ inputs.episodes_per_run }}"; fi
+          npm start
+
+      - name: Commit rss + data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add public/rss.xml public/episodes.json data/state.json data/processed.json data/episodes
+          git commit -m "chore: update feed" || echo "No changes"
+          git push
