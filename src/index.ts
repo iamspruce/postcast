@@ -86,9 +86,21 @@ async function loadEpisodes(): Promise<RssItem[]> {
         }
       }
     }
-    return items.sort(
+    const seenGuids = new Set<string>();
+    const uniqueItems: RssItem[] = [];
+
+    // Sort items by date descending first to keep the newest if duplicates exist
+    const sorted = items.sort(
       (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
     );
+
+    for (const item of sorted) {
+      if (seenGuids.has(item.guid)) continue;
+      seenGuids.add(item.guid);
+      uniqueItems.push(item);
+    }
+
+    return uniqueItems;
   } catch {
     return [];
   }
@@ -250,6 +262,8 @@ async function main() {
       // Also write to the local directory for extra redundancy
       await fs.writeFile(path.join(episodeDir, "job.json"), JSON.stringify({ jobId, startedAt: new Date().toISOString() }, null, 2));
       logger.info(`Started new OrangeClone job: ${jobId}`);
+    } else {
+      logger.info(`Resuming existing OrangeClone job: ${jobId}`);
     }
 
     const tts = await pollSpeechJob(jobId);
@@ -274,17 +288,21 @@ async function main() {
     }
     const audioBuffer = new Uint8Array(await audioRes.arrayBuffer());
 
-    const key = `episodes/${stamp}/${slug}.mp3`;
+    // Use the date from the folder name for consistency in R2 paths
+    const folderParts = episodeDir.split(path.sep);
+    const folderStamp = folderParts[folderParts.length - 2] || stamp;
+
+    const key = `episodes/${folderStamp}/${slug}.mp3`;
     const upload = await uploadAudio(key, audioBuffer);
 
     const description = `${context.article.title}. Read the full article at ${context.article.canonicalUrl}.`;
     const meta = {
-      title: context.article.title,
-      description,
+      title: context.article.title.trim(),
+      description: description.trim(),
       guid: context.article.canonicalUrl,
       sourceUrl: context.article.canonicalUrl,
       sourceId: context.article.sourceId,
-      author: context.article.author || "Unknown",
+      author: (context.article.author || "Unknown").trim(),
       pubDate: context.article.publishedAt || isoDate(),
       enclosureUrl: upload.publicUrl,
       enclosureLength: audioBuffer.length,
@@ -298,12 +316,14 @@ async function main() {
     processed = addProcessed(processed, hash);
     await saveProcessed(processed);
 
-    const existingItems = await loadEpisodes();
-    const rssItems = [meta as RssItem, ...existingItems].slice(0, 50);
-    await buildRss(defaultChannel(rssItems));
-
     logger.info(`Episode generated: ${context.article.title}`);
   }
+
+  // Generate RSS feed after processing all selected episodes
+  const finalEpisodes = await loadEpisodes();
+  const rssItems = finalEpisodes.slice(0, 50);
+  await buildRss(defaultChannel(rssItems));
+  logger.info("RSS feed updated successfully");
 }
 
 main().catch((err) => {
