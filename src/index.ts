@@ -95,7 +95,7 @@ async function loadEpisodes(): Promise<RssItem[]> {
 
 async function main() {
   logger.info("Starting daily pipeline");
-  const processed = await loadProcessed();
+  let processed = await loadProcessed();
   const characterId = await ensureCharacterId();
 
   const feeds = await Promise.all(sources.map((source) => fetchFeed(source)));
@@ -111,6 +111,7 @@ async function main() {
     .slice(0, MAX_CANDIDATES);
 
   const scored: ScoredCandidate[] = [];
+  const seenHashes = new Set<string>();
 
   for (const item of recentItems) {
     try {
@@ -125,10 +126,11 @@ async function main() {
       });
 
       const hash = fingerprintArticle(article);
-      if (isProcessed(processed, hash)) {
-        logger.info(`Skipping already processed: ${article.title}`);
+      if (isProcessed(processed, hash) || seenHashes.has(hash)) {
+        logger.info(`Skipping already processed or seen: ${article.title}`);
         continue;
       }
+      seenHashes.add(hash);
 
       const filterResult = await runFilters(article, filterRules);
       if (!filterResult.ok) {
@@ -172,6 +174,24 @@ async function main() {
     const slug = slugify(context.article.title, { lower: true, strict: true });
     const stamp = dayStamp();
     const episodeDir = path.join(process.cwd(), "data", "episodes", stamp, slug);
+
+    // Skip if meta.json already exists (fully processed)
+    const metaPath = path.join(episodeDir, "meta.json");
+    try {
+      await fs.access(metaPath);
+      logger.info(`Episode already fully generated: ${context.article.title}`);
+
+      // Still ensure it's in processed list if it somehow wasn't
+      const hash = fingerprintArticle(context.article);
+      if (!isProcessed(processed, hash)) {
+        processed = addProcessed(processed, hash);
+        await saveProcessed(processed);
+      }
+      continue;
+    } catch {
+      // Not yet generated, proceed
+    }
+
     await fs.mkdir(episodeDir, { recursive: true });
     await fs.writeFile(path.join(episodeDir, "clean.txt"), context.cleanText);
     await fs.writeFile(path.join(episodeDir, "raw_extract.txt"), context.article.text);
@@ -222,12 +242,11 @@ async function main() {
       notes: context.notes,
     };
 
-    await fs.writeFile(path.join(episodeDir, "meta.json"), JSON.stringify(meta, null, 2));
-
+    await fs.writeFile(metaPath, JSON.stringify(meta, null, 2));
 
     const hash = fingerprintArticle(context.article);
-    const nextProcessed = addProcessed(processed, hash);
-    await saveProcessed(nextProcessed);
+    processed = addProcessed(processed, hash);
+    await saveProcessed(processed);
 
     const existingItems = await loadEpisodes();
     const rssItems = [meta as RssItem, ...existingItems].slice(0, 50);

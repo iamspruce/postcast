@@ -53,36 +53,48 @@ export async function startSpeechJob(request: TtsRequest): Promise<string> {
   return jobId;
 }
 
-export async function pollSpeechJob(jobId: string): Promise<TtsResponse> {
+export async function getJobStatus(jobId: string): Promise<TtsResponse> {
   const baseUrl = resolveBaseUrl();
+  const statusRes = await fetch(`${baseUrl}/voices/${jobId}`, {
+    headers: baseHeaders(),
+  });
+
+  if (!statusRes.ok) {
+    throw new Error(`OrangeClone status failed: ${statusRes.status}`);
+  }
+
+  const payload = (await statusRes.json()) as {
+    data?: { status?: string; audio_url?: string; audioUrl?: string; error?: string };
+    status?: string;
+    audio_url?: string;
+    audioUrl?: string;
+    error?: string;
+  };
+
+  const status = payload.data?.status || payload.status;
+  const audioUrl = payload.data?.audioUrl || payload.data?.audio_url || payload.audioUrl || payload.audio_url;
+  const error = payload.data?.error || payload.error;
+
+  if (status === "failed") {
+    throw new Error(`OrangeClone synth failed: ${error || "unknown error"}`);
+  }
+
+  return {
+    audioUrl: audioUrl || "",
+    jobId,
+    status: (status === "completed" ? "completed" : "pending") as TtsResponse["status"]
+  };
+}
+
+export async function pollSpeechJob(jobId: string): Promise<TtsResponse> {
   const maxAttempts = 300; // 15 minutes at 3s intervals
   const pollIntervalMs = 3000;
 
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    const statusRes = await fetch(`${baseUrl}/voices/${jobId}`, {
-      headers: baseHeaders(),
-    });
+    const result = await getJobStatus(jobId);
 
-    if (!statusRes.ok) {
-      throw new Error(`OrangeClone status failed: ${statusRes.status}`);
-    }
-
-    const statusPayload = (await statusRes.json()) as {
-      data?: { status?: string; audioUrl?: string; error?: string };
-      status?: string;
-      audioUrl?: string;
-      error?: string;
-    };
-    const status = statusPayload.data?.status || statusPayload.status;
-    const audioUrl = statusPayload.data?.audioUrl || statusPayload.audioUrl;
-    const error = statusPayload.data?.error || statusPayload.error;
-
-    if (status === "completed" && audioUrl) {
-      return { audioUrl, jobId, status: "completed" };
-    }
-
-    if (status === "failed") {
-      throw new Error(`OrangeClone synth failed: ${error || "unknown error"}`);
+    if (result.status === "completed" && result.audioUrl) {
+      return result;
     }
 
     await sleep(pollIntervalMs);

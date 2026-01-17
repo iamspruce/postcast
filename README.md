@@ -148,6 +148,16 @@ On the next run, PostCast will create a new character and voice.
 
 ---
 
+## GitHub Actions Deployment
+
+If you are using the included `.github/workflows/podcast-builder.yml` to automate your builds, ensure the following:
+
+- **Permissions**: The workflow needs write access to push the updated RSS feed and metadata back to your repository.
+  - The workflow file contains `permissions: contents: write`.
+  - In your GitHub Repository, go to **Settings > Actions > General > Workflow permissions** and ensure **"Read and write permissions"** is selected.
+
+---
+
 ## Project structure
 
 - `src/` — core pipeline and modules
