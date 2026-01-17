@@ -21,6 +21,7 @@ import { uploadAudio } from "./storage/r2";
 import { buildRss } from "./rss/buildRss";
 import { defaultChannel } from "./rss/templates";
 import { RssItem } from "./rss/types";
+import { findJobByFingerprint, saveJob } from "./state/jobStore";
 
 const MAX_CANDIDATES = config.pipeline.maxCandidates;
 const LOOKBACK_HOURS = config.pipeline.lookbackHours;
@@ -173,41 +174,47 @@ async function main() {
     const { context, score, breakdown } = pick;
     const slug = slugify(context.article.title, { lower: true, strict: true });
     const stamp = dayStamp();
+    const hash = fingerprintArticle(context.article);
     const episodeDir = path.join(process.cwd(), "data", "episodes", stamp, slug);
-
-    // Skip if meta.json already exists (fully processed)
     const metaPath = path.join(episodeDir, "meta.json");
+
+    // 1. Check if already fully generated
     try {
       await fs.access(metaPath);
       logger.info(`Episode already fully generated: ${context.article.title}`);
-
-      // Still ensure it's in processed list if it somehow wasn't
-      const hash = fingerprintArticle(context.article);
       if (!isProcessed(processed, hash)) {
         processed = addProcessed(processed, hash);
         await saveProcessed(processed);
       }
       continue;
-    } catch {
-      // Not yet generated, proceed
+    } catch { }
+
+    // 2. Check for existing job (cross-day)
+    let jobId: string | undefined;
+    const existingJob = await findJobByFingerprint(hash);
+
+    if (existingJob) {
+      jobId = existingJob.jobId;
+      logger.info(`Found existing job ${jobId} for: ${context.article.title} (Status: ${existingJob.status})`);
     }
 
     await fs.mkdir(episodeDir, { recursive: true });
     await fs.writeFile(path.join(episodeDir, "clean.txt"), context.cleanText);
     await fs.writeFile(path.join(episodeDir, "raw_extract.txt"), context.article.text);
 
-    const jobPath = path.join(episodeDir, "job.json");
-    let jobId: string;
-    try {
-      const jobData = await fs.readFile(jobPath, "utf8");
-      jobId = JSON.parse(jobData).jobId;
-      logger.info(`Resuming OrangeClone job ${jobId} for: ${context.article.title}`);
-    } catch {
+    // 3. Start or resume job
+    if (!jobId) {
       jobId = await startSpeechJob({
         characterId,
         text: context.cleanText,
       });
-      await fs.writeFile(jobPath, JSON.stringify({ jobId, startedAt: new Date().toISOString() }, null, 2));
+      await saveJob({
+        jobId,
+        fingerprint: hash,
+        startedAt: new Date().toISOString(),
+        status: "pending",
+      });
+      logger.info(`Started new OrangeClone job: ${jobId}`);
     }
 
     const tts = await pollSpeechJob(jobId);
@@ -216,6 +223,15 @@ async function main() {
       logger.warn(`Job ${jobId} is still pending. Skipping for this run.`);
       continue;
     }
+
+    // Update job store with completion
+    await saveJob({
+      jobId,
+      fingerprint: hash,
+      startedAt: existingJob?.startedAt || new Date().toISOString(),
+      status: "completed",
+      audioUrl: tts.audioUrl,
+    });
 
     const audioRes = await fetch(tts.audioUrl);
     if (!audioRes.ok) {
@@ -244,7 +260,6 @@ async function main() {
 
     await fs.writeFile(metaPath, JSON.stringify(meta, null, 2));
 
-    const hash = fingerprintArticle(context.article);
     processed = addProcessed(processed, hash);
     await saveProcessed(processed);
 
