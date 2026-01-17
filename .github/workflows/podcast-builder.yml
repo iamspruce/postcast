@@ -53,4 +53,5 @@ jobs:
           git config user.email "github-actions@github.com"
           git add public/rss.xml public/episodes.json data/state.json data/processed.json data/episodes
           git commit -m "chore: update feed" || echo "No changes"
+          git pull --rebase origin main
           git push
