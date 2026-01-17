@@ -25,10 +25,4 @@ export const sources: Source[] = [
     feedUrl: "https://www.joshwcomeau.com/rss.xml",
     siteUrl: "https://www.joshwcomeau.com/",
   },
-  {
-    id: "portfolio",
-    title: "Spruce Emmanuel",
-    feedUrl: "http://localhost:4321/rss.xml",
-    siteUrl: "https://spruceemmanuel.com",
-  },
 ];

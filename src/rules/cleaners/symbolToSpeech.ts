@@ -19,6 +19,17 @@ export const symbolToSpeech = (): TransformRule<CleanContext> => ({
       [/\$/g, " dollars "],
       [/%/g, " percent "],
       [/@/g, " at "],
+      [/#/g, " hash "],
+      [/\*/g, " star "],
+      [/\|/g, " pipe "],
+      [/~/g, " tilde "],
+      [/_/g, " underscore "],
+      [/±/g, " plus or minus "],
+      [/≈/g, " approximately "],
+      [/≠/g, " not equal to "],
+      [/≤/g, " less than or equal to "],
+      [/≥/g, " greater than or equal to "],
+      [/^/g, " caret "],
       [/\s{2,}/g, " "],
     ];
 
