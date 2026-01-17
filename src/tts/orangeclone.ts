@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { config, requireConfig } from "../config";
 import { TtsRequest, TtsResponse } from "./types";
+import { logger } from "../utils/logger";
 
 function baseHeaders() {
   const apiKey = requireConfig(config.orangeclone.apiKey, "ORANGECLONE_API_KEY");
@@ -60,22 +61,20 @@ export async function getJobStatus(jobId: string): Promise<TtsResponse> {
   });
 
   if (!statusRes.ok) {
+    const errorBody = await statusRes.text();
+    logger.error(`OrangeClone status check failed: ${statusRes.status}`, { body: errorBody });
     throw new Error(`OrangeClone status failed: ${statusRes.status}`);
   }
 
-  const payload = (await statusRes.json()) as {
-    data?: { status?: string; audio_url?: string; audioUrl?: string; error?: string };
-    status?: string;
-    audio_url?: string;
-    audioUrl?: string;
-    error?: string;
-  };
+  const payload = (await statusRes.json()) as any;
+  logger.info(`OrangeClone status payload for ${jobId}:`, payload);
 
   const status = payload.data?.status || payload.status;
   const audioUrl = payload.data?.audioUrl || payload.data?.audio_url || payload.audioUrl || payload.audio_url;
   const error = payload.data?.error || payload.error;
 
   if (status === "failed") {
+    logger.error(`OrangeClone job failed: ${jobId}`, { error });
     throw new Error(`OrangeClone synth failed: ${error || "unknown error"}`);
   }
 
@@ -86,6 +85,7 @@ export async function getJobStatus(jobId: string): Promise<TtsResponse> {
   };
 }
 
+
 export async function pollSpeechJob(jobId: string): Promise<TtsResponse> {
   const maxAttempts = 300; // 15 minutes at 3s intervals
   const pollIntervalMs = 3000;
@@ -94,7 +94,12 @@ export async function pollSpeechJob(jobId: string): Promise<TtsResponse> {
     const result = await getJobStatus(jobId);
 
     if (result.status === "completed" && result.audioUrl) {
+      logger.info(`OrangeClone job ${jobId} completed!`);
       return result;
+    }
+
+    if (attempt % 5 === 0) { // Log every 15 seconds
+      logger.info(`OrangeClone job ${jobId} is ${result.status}... (attempt ${attempt + 1})`);
     }
 
     await sleep(pollIntervalMs);

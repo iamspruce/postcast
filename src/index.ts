@@ -94,6 +94,26 @@ async function loadEpisodes(): Promise<RssItem[]> {
   }
 }
 
+async function findExistingEpisodeDir(slug: string): Promise<string | undefined> {
+  const episodesDir = path.join(process.cwd(), "data", "episodes");
+  try {
+    const dates = await fs.readdir(episodesDir);
+    for (const date of dates) {
+      if (date === ".DS_Store") continue;
+      const dayPath = path.join(episodesDir, date);
+      const isDir = (await fs.stat(dayPath)).isDirectory();
+      if (!isDir) continue;
+
+      const items = await fs.readdir(dayPath);
+      if (items.includes(slug)) {
+        return path.join(dayPath, slug);
+      }
+    }
+  } catch {
+    return undefined;
+  }
+}
+
 async function main() {
   logger.info("Starting daily pipeline");
   let processed = await loadProcessed();
@@ -175,13 +195,16 @@ async function main() {
     const slug = slugify(context.article.title, { lower: true, strict: true });
     const stamp = dayStamp();
     const hash = fingerprintArticle(context.article);
-    const episodeDir = path.join(process.cwd(), "data", "episodes", stamp, slug);
+
+    // Search for any existing directory for this slug (historical or current)
+    const existingDir = await findExistingEpisodeDir(slug);
+    const episodeDir = existingDir || path.join(process.cwd(), "data", "episodes", stamp, slug);
     const metaPath = path.join(episodeDir, "meta.json");
 
     // 1. Check if already fully generated
     try {
       await fs.access(metaPath);
-      logger.info(`Episode already fully generated: ${context.article.title}`);
+      logger.info(`Episode already fully generated: ${context.article.title} (Found in ${episodeDir})`);
       if (!isProcessed(processed, hash)) {
         processed = addProcessed(processed, hash);
         await saveProcessed(processed);
@@ -189,15 +212,24 @@ async function main() {
       continue;
     } catch { }
 
-    // 2. Check for existing job (cross-day)
+    // 2. Check for existing job (cross-day or cross-folder)
     let jobId: string | undefined;
-    const existingJob = await findJobByFingerprint(hash);
 
-    if (existingJob) {
-      jobId = existingJob.jobId;
-      logger.info(`Found existing job ${jobId} for: ${context.article.title} (Status: ${existingJob.status})`);
+    // Check jobs.json first (fast)
+    const storeJob = await findJobByFingerprint(hash);
+    if (storeJob) {
+      jobId = storeJob.jobId;
+      logger.info(`Found job ${jobId} in central store for: ${context.article.title}`);
+    } else if (existingDir) {
+      // Check for local job.json in existing directory (slow but robust)
+      try {
+        const jobRaw = await fs.readFile(path.join(existingDir, "job.json"), "utf8");
+        jobId = JSON.parse(jobRaw).jobId;
+        logger.info(`Found existing job ${jobId} in folder: ${existingDir}`);
+      } catch { }
     }
 
+    // Ensure directory exists (might be a new day or new article)
     await fs.mkdir(episodeDir, { recursive: true });
     await fs.writeFile(path.join(episodeDir, "clean.txt"), context.cleanText);
     await fs.writeFile(path.join(episodeDir, "raw_extract.txt"), context.article.text);
@@ -214,6 +246,9 @@ async function main() {
         startedAt: new Date().toISOString(),
         status: "pending",
       });
+
+      // Also write to the local directory for extra redundancy
+      await fs.writeFile(path.join(episodeDir, "job.json"), JSON.stringify({ jobId, startedAt: new Date().toISOString() }, null, 2));
       logger.info(`Started new OrangeClone job: ${jobId}`);
     }
 
@@ -228,7 +263,7 @@ async function main() {
     await saveJob({
       jobId,
       fingerprint: hash,
-      startedAt: existingJob?.startedAt || new Date().toISOString(),
+      startedAt: storeJob?.startedAt || new Date().toISOString(),
       status: "completed",
       audioUrl: tts.audioUrl,
     });
