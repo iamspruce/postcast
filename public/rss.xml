@@ -20,11 +20,11 @@
     <itunes:category text="Technology" />
     <itunes:explicit>no</itunes:explicit>
     <image>
-      <url>https://spruceemmanuel.com/podcast/podcast-cover.png</url>
+      <url>https://spruceemmanuel.com/podcast-cover.png</url>
       <title>Spruce’s Tech Radar</title>
       <link>https://spruceemmanuel.com/podcast</link>
     </image>
-    <itunes:image href="https://spruceemmanuel.com/podcast/podcast-cover.png" />
+    <itunes:image href="https://spruceemmanuel.com/podcast-cover.png" />
     
     <item>
       <title>How to Choose the Best GPU for Your AI Workloads</title>
