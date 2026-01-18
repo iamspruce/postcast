@@ -1,40 +1,5 @@
 [
   {
-    "title": "Smashing Animations Part 8: Theming Animations Using CSS Relative Colour",
-    "description": "Smashing Animations Part 8: Theming Animations Using CSS Relative Colour. Read the full article at https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/.",
-    "guid": "https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/",
-    "sourceUrl": "https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/",
-    "sourceId": "smashing-magazine",
-    "author": "hello@smashingmagazine.com (Andy Clarke)",
-    "pubDate": "2026-01-17T00:00:00.000Z",
-    "enclosureUrl": "https://pub-1d6d8c4d05944ed6bccad3663314b39b.r2.dev/episodes/2026-01-17/smashing-animations-part-8-theming-animations-using-css-relative-colour.mp3",
-    "enclosureLength": 38156844,
-    "score": 6,
-    "breakdown": [
-      {
-        "id": "scoreByWordCount",
-        "delta": 5
-      },
-      {
-        "id": "scoreByHeadings",
-        "delta": 3
-      },
-      {
-        "id": "scoreByFreshness",
-        "delta": 1
-      },
-      {
-        "id": "penalizeRoundups",
-        "delta": 0
-      },
-      {
-        "id": "penalizeTooManyLinks",
-        "delta": -3
-      }
-    ],
-    "notes": []
-  },
-  {
     "title": "\n                     How to Choose the Best GPU for Your AI Workloads \n                ",
     "description": "\n                     How to Choose the Best GPU for Your AI Workloads \n                . Read the full article at https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/.",
     "guid": "https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/",
