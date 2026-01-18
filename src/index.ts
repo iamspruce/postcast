@@ -19,6 +19,7 @@ import { loadState, saveState } from "./state/state";
 import { createCharacter, startSpeechJob, pollSpeechJob } from "./tts/orangeclone";
 import { uploadAudio } from "./storage/r2";
 import { buildRss } from "./rss/buildRss";
+import { loadEpisodes } from "./rss/loadEpisodes";
 import { defaultChannel } from "./rss/templates";
 import { RssItem } from "./rss/types";
 import { findJobByFingerprint, saveJob } from "./state/jobStore";
@@ -57,54 +58,7 @@ async function ensureCharacterId(): Promise<string> {
   return characterId;
 }
 
-async function loadEpisodes(): Promise<RssItem[]> {
-  const episodesDir = path.join(process.cwd(), "data", "episodes");
-  try {
-    const dates = await fs.readdir(episodesDir);
-    const items: RssItem[] = [];
-    for (const dateDir of dates) {
-      const dayPath = path.join(episodesDir, dateDir);
-      const slugs = await fs.readdir(dayPath);
-      for (const slug of slugs) {
-        const metaPath = path.join(dayPath, slug, "meta.json");
-        try {
-          const raw = await fs.readFile(metaPath, "utf8");
-          const meta = JSON.parse(raw) as {
-            title: string;
-            description: string;
-            guid: string;
-            sourceUrl: string;
-            sourceId: string;
-            author: string;
-            pubDate: string;
-            enclosureUrl: string;
-            enclosureLength: number;
-          };
-          items.push(meta);
-        } catch {
-          continue;
-        }
-      }
-    }
-    const seenGuids = new Set<string>();
-    const uniqueItems: RssItem[] = [];
 
-    // Sort items by date descending first to keep the newest if duplicates exist
-    const sorted = items.sort(
-      (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
-    );
-
-    for (const item of sorted) {
-      if (seenGuids.has(item.guid)) continue;
-      seenGuids.add(item.guid);
-      uniqueItems.push(item);
-    }
-
-    return uniqueItems;
-  } catch {
-    return [];
-  }
-}
 
 async function findExistingEpisodeDir(slug: string): Promise<string | undefined> {
   const episodesDir = path.join(process.cwd(), "data", "episodes");
@@ -303,7 +257,7 @@ async function main() {
       sourceUrl: context.article.canonicalUrl,
       sourceId: context.article.sourceId,
       author: (context.article.author || "Unknown").trim(),
-      pubDate: context.article.publishedAt || isoDate(),
+      pubDate: isoDate(),
       enclosureUrl: upload.publicUrl,
       enclosureLength: audioBuffer.length,
       score,
@@ -322,7 +276,12 @@ async function main() {
   // Generate RSS feed after processing all selected episodes
   const finalEpisodes = await loadEpisodes();
   const rssItems = finalEpisodes.slice(0, 50);
-  await buildRss(defaultChannel(rssItems));
+
+  const channel = defaultChannel(rssItems);
+  const siteUrl = channel.link.replace(/\/$/, "");
+  channel.imageUrl = `${siteUrl}/podcast-cover.png`;
+
+  await buildRss(channel);
   logger.info("RSS feed updated successfully");
 }
 

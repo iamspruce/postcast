@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" 
   xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" 
-  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+    <atom:link href="https://spruceemmanuel.com/podcast/rss.xml" rel="self" type="application/rss+xml" />
     <title>Spruce’s Tech Radar</title>
     <description>The best tech articles of the week, curated and read by Spruce’s AI.</description>
     <link>https://spruceemmanuel.com/podcast</link>
     <language>en-us</language>
+    <copyright>Copyright 2026 Spruce Emmanuel</copyright>
     <itunes:author>Spruce Emmanuel</itunes:author>
     <itunes:summary>The best tech articles of the week, curated and read by Spruce’s AI.</itunes:summary>
+    <itunes:type>episodic</itunes:type>
     <itunes:owner>
       <itunes:email>hello@spruceemmanuel.com</itunes:email>
       <itunes:name>Spruce Emmanuel</itunes:name>
     </itunes:owner>
     <itunes:category text="Technology" />
     <itunes:explicit>no</itunes:explicit>
+    <image>
+      <url>https://spruceemmanuel.com/podcast/podcast-cover.png</url>
+      <title>Spruce’s Tech Radar</title>
+      <link>https://spruceemmanuel.com/podcast</link>
+    </image>
+    <itunes:image href="https://spruceemmanuel.com/podcast/podcast-cover.png" />
     
-    <item>
-      <title>
-                     How to Choose the Best GPU for Your AI Workloads 
-                </title>
-      <description>
-                     How to Choose the Best GPU for Your AI Workloads 
-                . Read the full article at https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/. Original article: https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/</description>
-      <guid>https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/</guid>
-      <pubDate>2026-01-15T17:08:09.000Z</pubDate>
-      <itunes:author>
-                     Daniel Adeboye 
-                </itunes:author>
-      <enclosure url="https://pub-1d6d8c4d05944ed6bccad3663314b39b.r2.dev/episodes/2026-01-17/how-to-choose-the-best-gpu-for-your-ai-workloads.mp3" length="37273644" type="audio/mpeg" />
-    </item>
     <item>
       <title>Smashing Animations Part 8: Theming Animations Using CSS Relative Colour</title>
       <description>Smashing Animations Part 8: Theming Animations Using CSS Relative Colour. Read the full article at https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/. Original article: https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/</description>
-      <guid>https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/</guid>
-      <pubDate>2026-01-14T10:00:00.000Z</pubDate>
+      <guid isPermaLink="false">https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/</guid>
+      <pubDate>Sat, 17 Jan 2026 00:00:00 GMT</pubDate>
       <itunes:author>hello@smashingmagazine.com (Andy Clarke)</itunes:author>
+      <itunes:subtitle>Smashing Animations Part 8: Theming Animations Using CSS Relative Colour</itunes:subtitle>
+      <itunes:summary>Smashing Animations Part 8: Theming Animations Using CSS Relative Colour. Read the full article at https://smashingmagazine.com/2026/01/smashing-animations-part-8-css-relative-colour/.</itunes:summary>
       <enclosure url="https://pub-1d6d8c4d05944ed6bccad3663314b39b.r2.dev/episodes/2026-01-17/smashing-animations-part-8-theming-animations-using-css-relative-colour.mp3" length="38156844" type="audio/mpeg" />
+    </item>
+    <item>
+      <title>How to Choose the Best GPU for Your AI Workloads</title>
+      <description>How to Choose the Best GPU for Your AI Workloads 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/. Original article: https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/</description>
+      <guid isPermaLink="false">https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/</guid>
+      <pubDate>Fri, 16 Jan 2026 00:00:00 GMT</pubDate>
+      <itunes:author>Daniel Adeboye</itunes:author>
+      <itunes:subtitle>How to Choose the Best GPU for Your AI Workloads</itunes:subtitle>
+      <itunes:summary>How to Choose the Best GPU for Your AI Workloads 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-choose-the-best-gpu-for-your-ai-workloads/.</itunes:summary>
+      <enclosure url="https://pub-1d6d8c4d05944ed6bccad3663314b39b.r2.dev/episodes/2026-01-17/how-to-choose-the-best-gpu-for-your-ai-workloads.mp3" length="37273644" type="audio/mpeg" />
     </item>
   </channel>
 </rss>

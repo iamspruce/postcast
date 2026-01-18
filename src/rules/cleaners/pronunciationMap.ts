@@ -66,6 +66,19 @@ export const pronunciationMap = (): TransformRule<CleanContext> => ({
       [/\bSaaS\b/g, "Sass"],
       [/\bPaaS\b/g, "Pass"],
       [/\bIaaS\b/g, "I A A S"],
+      [/\bSVG\b/gi, "S V G"],
+      [/\bRGB\b/gi, "R G B"],
+      [/\bRGBA\b/gi, "R G B A"],
+      [/\bHSL\b/gi, "H S L"],
+      [/\bHSLA\b/gi, "H S L A"],
+      [/\bHWB\b/gi, "H W B"],
+      [/\bLCH\b/gi, "L C H"],
+      [/\bOKLCH\b/gi, "O K L C H"],
+      [/\bOKLAB\b/gi, "O K Lab"],
+      [/\bCIELAB\b/gi, "C I E Lab"],
+      [/\bsRGB\b/gi, "S R G B"],
+      [/\bDOM\b/g, "D O M"],
+      [/\bviewBox\b/g, "view box"],
     ];
 
     for (const [pattern, replacement] of mappings) {

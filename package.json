@@ -6,6 +6,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "node --enable-source-maps dist/index.js",
     "dev": "ts-node src/index.ts",
+    "rebuild-rss": "ts-node src/scripts/rebuildRss.ts",
     "lint": "echo 'no lint configured'"
   },
   "dependencies": {

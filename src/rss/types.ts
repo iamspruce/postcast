@@ -17,5 +17,6 @@ export type RssChannel = {
   language: string;
   author: string;
   email: string;
+  imageUrl?: string;
   items: RssItem[];
 };

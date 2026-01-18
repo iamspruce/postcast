@@ -4,7 +4,7 @@ import { CleanContext } from "./types";
 
 import { rejectDomainMismatch } from "./filters/rejectDomainMismatch";
 import { rejectNonEnglish } from "./filters/rejectNonEnglish";
-import { minWordCount } from "./filters/minWordCount";
+import { wordCountRange } from "./filters/wordCountRange";
 import { minHeadings } from "./filters/minHeadings";
 import { rejectPromos } from "./filters/rejectPromos";
 import { rejectTitlePatterns } from "./filters/rejectTitlePatterns";
@@ -19,6 +19,8 @@ import { symbolToSpeech } from "./cleaners/symbolToSpeech";
 import { pronunciationMap } from "./cleaners/pronunciationMap";
 import { introOutro } from "./cleaners/introOutro";
 import { enforceMaxDuration } from "./cleaners/enforceMaxDuration";
+import { stripHtmlTags } from "./cleaners/stripHtmlTags";
+import { cleanCss } from "./cleaners/cleanCss";
 
 import { scoreByWordCount } from "./scoring/scoreByWordCount";
 import { scoreByFreshness } from "./scoring/scoreByFreshness";
@@ -31,7 +33,7 @@ export const filterRules: FilterRule<ExtractedArticle>[] = [
   rejectNonEnglish(),
   rejectTitlePatterns(),
   rejectPromos(),
-  minWordCount({ min: 700 }),
+  wordCountRange({ min: 700, max: 2300 }), // ~15 mins @ 155 wpm
   minHeadings({ min: 2 }),
 ];
 
@@ -45,9 +47,11 @@ export const cleanerRules: TransformRule<CleanContext>[] = [
   stripUrls({ urlReplacement: "Link in description." }),
   handleLists(),
   handleTables(),
+  stripHtmlTags(),
+  cleanCss(),
   symbolToSpeech(),
   pronunciationMap(),
-  enforceMaxDuration({ maxMinutes: 12 }),
+  enforceMaxDuration({ maxMinutes: 15 }),
   introOutro(),
 ];
 
