@@ -20,12 +20,24 @@
     <itunes:category text="Technology" />
     <itunes:explicit>no</itunes:explicit>
     <image>
-      <url>https://spruceemmanuel.com/podcast-cover.png</url>
+      <url>https://spruceemmanuel.com/podcast/podcast-cover.png</url>
       <title>Spruce’s Tech Radar</title>
       <link>https://spruceemmanuel.com/podcast</link>
     </image>
-    <itunes:image href="https://spruceemmanuel.com/podcast-cover.png" />
+    <itunes:image href="https://spruceemmanuel.com/podcast/podcast-cover.png" />
     
+    <item>
+      <title>How to Deploy a MERN Stack Notes App on AWS</title>
+      <description>How to Deploy a MERN Stack Notes App on AWS 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/. Original article: https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/</description>
+      <guid isPermaLink="false">https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/</guid>
+      <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
+      <itunes:author>Umair Mirza</itunes:author>
+      <itunes:subtitle>How to Deploy a MERN Stack Notes App on AWS</itunes:subtitle>
+      <itunes:summary>How to Deploy a MERN Stack Notes App on AWS 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/.</itunes:summary>
+      <enclosure url="https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-01-19/how-to-deploy-a-mern-stack-notes-app-on-aws.mp3" length="44300844" type="audio/mpeg" />
+    </item>
     <item>
       <title>How to Choose the Best GPU for Your AI Workloads</title>
       <description>How to Choose the Best GPU for Your AI Workloads 

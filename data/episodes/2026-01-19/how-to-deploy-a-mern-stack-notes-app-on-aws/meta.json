@@ -1,0 +1,35 @@
+{
+  "title": "How to Deploy a MERN Stack Notes App on AWS",
+  "description": "How to Deploy a MERN Stack Notes App on AWS \n                . Read the full article at https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/.",
+  "guid": "https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/",
+  "sourceUrl": "https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/",
+  "sourceId": "freecodecamp",
+  "author": "Umair Mirza",
+  "pubDate": "2026-01-19T06:44:29.913Z",
+  "enclosureUrl": "https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-01-19/how-to-deploy-a-mern-stack-notes-app-on-aws.mp3",
+  "enclosureLength": 44300844,
+  "score": 8,
+  "breakdown": [
+    {
+      "id": "scoreByWordCount",
+      "delta": 5
+    },
+    {
+      "id": "scoreByHeadings",
+      "delta": 3
+    },
+    {
+      "id": "scoreByFreshness",
+      "delta": 1
+    },
+    {
+      "id": "penalizeRoundups",
+      "delta": 0
+    },
+    {
+      "id": "penalizeTooManyLinks",
+      "delta": -1
+    }
+  ],
+  "notes": []
+}
