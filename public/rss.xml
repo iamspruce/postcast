@@ -27,6 +27,18 @@
     <itunes:image href="https://spruceemmanuel.com/podcast/podcast-cover.png" />
     
     <item>
+      <title>How to Work with PDF Files in Python: A PyPDF Guide</title>
+      <description>How to Work with PDF Files in Python: A PyPDF Guide 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/. Original article: https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/</description>
+      <guid isPermaLink="false">https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/</guid>
+      <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
+      <itunes:author>Manish Shivanandhan</itunes:author>
+      <itunes:subtitle>How to Work with PDF Files in Python: A PyPDF Guide</itunes:subtitle>
+      <itunes:summary>How to Work with PDF Files in Python: A PyPDF Guide 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/.</itunes:summary>
+      <enclosure url="https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-01-26/how-to-work-with-pdf-files-in-python-a-pypdf-guide.mp3" length="29721644" type="audio/mpeg" />
+    </item>
+    <item>
       <title>How to Deploy a MERN Stack Notes App on AWS</title>
       <description>How to Deploy a MERN Stack Notes App on AWS 
                 . Read the full article at https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/. Original article: https://www.freecodecamp.org/news/how-to-deploy-mern-stack-notes-app-aws/</description>

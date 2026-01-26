@@ -1,0 +1,35 @@
+{
+  "title": "How to Work with PDF Files in Python: A PyPDF Guide",
+  "description": "How to Work with PDF Files in Python: A PyPDF Guide \n                . Read the full article at https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/.",
+  "guid": "https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/",
+  "sourceUrl": "https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/",
+  "sourceId": "freecodecamp",
+  "author": "Manish Shivanandhan",
+  "pubDate": "2026-01-26T06:43:40.019Z",
+  "enclosureUrl": "https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-01-26/how-to-work-with-pdf-files-in-python-a-pypdf-guide.mp3",
+  "enclosureLength": 29721644,
+  "score": 6,
+  "breakdown": [
+    {
+      "id": "scoreByWordCount",
+      "delta": 3
+    },
+    {
+      "id": "scoreByHeadings",
+      "delta": 3
+    },
+    {
+      "id": "scoreByFreshness",
+      "delta": 1
+    },
+    {
+      "id": "penalizeRoundups",
+      "delta": 0
+    },
+    {
+      "id": "penalizeTooManyLinks",
+      "delta": -1
+    }
+  ],
+  "notes": []
+}
