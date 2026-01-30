@@ -27,6 +27,18 @@
     <itunes:image href="https://spruceemmanuel.com/podcast/podcast-cover.png" />
     
     <item>
+      <title>How to Chat with Your PDF Using Retrieval Augmented Generation</title>
+      <description>How to Chat with Your PDF Using Retrieval Augmented Generation 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/. Original article: https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/</description>
+      <guid isPermaLink="false">https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/</guid>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 GMT</pubDate>
+      <itunes:author>Manish Shivanandhan</itunes:author>
+      <itunes:subtitle>How to Chat with Your PDF Using Retrieval Augmented Generation</itunes:subtitle>
+      <itunes:summary>How to Chat with Your PDF Using Retrieval Augmented Generation 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/.</itunes:summary>
+      <enclosure url="https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-01-30/how-to-chat-with-your-pdf-using-retrieval-augmented-generation.mp3" length="27910444" type="audio/mpeg" />
+    </item>
+    <item>
       <title>How to Work with PDF Files in Python: A PyPDF Guide</title>
       <description>How to Work with PDF Files in Python: A PyPDF Guide 
                 . Read the full article at https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/. Original article: https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/</description>

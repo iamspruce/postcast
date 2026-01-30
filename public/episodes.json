@@ -1,5 +1,40 @@
 [
   {
+    "title": "How to Chat with Your PDF Using Retrieval Augmented Generation",
+    "description": "How to Chat with Your PDF Using Retrieval Augmented Generation \n                . Read the full article at https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/.",
+    "guid": "https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/",
+    "sourceUrl": "https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/",
+    "sourceId": "freecodecamp",
+    "author": "Manish Shivanandhan",
+    "pubDate": "2026-01-30T00:00:00.000Z",
+    "enclosureUrl": "https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-01-30/how-to-chat-with-your-pdf-using-retrieval-augmented-generation.mp3",
+    "enclosureLength": 27910444,
+    "score": 6,
+    "breakdown": [
+      {
+        "id": "scoreByWordCount",
+        "delta": 3
+      },
+      {
+        "id": "scoreByHeadings",
+        "delta": 3
+      },
+      {
+        "id": "scoreByFreshness",
+        "delta": 1
+      },
+      {
+        "id": "penalizeRoundups",
+        "delta": 0
+      },
+      {
+        "id": "penalizeTooManyLinks",
+        "delta": -1
+      }
+    ],
+    "notes": []
+  },
+  {
     "title": "How to Work with PDF Files in Python: A PyPDF Guide",
     "description": "How to Work with PDF Files in Python: A PyPDF Guide \n                . Read the full article at https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/.",
     "guid": "https://www.freecodecamp.org/news/how-to-work-with-pdf-files-in-python-a-pypdf-guide/",
