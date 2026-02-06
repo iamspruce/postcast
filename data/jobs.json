@@ -33,5 +33,12 @@
     "startedAt": "2026-01-30T06:52:49.829Z",
     "status": "completed",
     "audioUrl": "https://storage.googleapis.com/orangecloneai-voice-output/jobs/284f63b1-a619-4bf1-a510-5f47bc8d5b17/output.wav?Expires=1769842367&GoogleAccessId=firebase-adminsdk-fbsvc%40orangecloneai.iam.gserviceaccount.com&Signature=F%2BPpSngH%2F2wlTdr%2FWsaKejWHcMtwaMdS2GSNuvNUXbS%2F1WqT77QAe%2BLP%2B1reDW0ehHjjcvKY%2F9JkZtFvzLg8elhiD9thuyJKCC7MXeMQ2dv3XhQFKH2cqXO6vhQqEHqErnicDsg%2BisLSdSkSCjEmLt5QX%2BxuHWqZB9o9lP3l3IKT7iWsFaqIrCLOcAa9ks3WKK26OnQRchhwH%2BDDJscm4ijzLWBTDy7Ef6PxppssRVVSAGUlhKzAIIS%2B8WjZ%2BRzjb3UeMRHqhYg%2BiIwH8P%2B3iq9n2z%2BWoRHJ3NODItkho19qRN9BFh%2BIRRul5crrFe58pQD5A77y0vCQdnwuPKPkBQ%3D%3D"
+  },
+  "82aac475126b9f8565d15330872b6d5307aba4540eec16e209a27fb26d75731d": {
+    "jobId": "c7e549dd-e02d-4f9c-91d3-f6844adae456",
+    "fingerprint": "82aac475126b9f8565d15330872b6d5307aba4540eec16e209a27fb26d75731d",
+    "startedAt": "2026-02-06T07:00:14.214Z",
+    "status": "completed",
+    "audioUrl": "https://storage.googleapis.com/orangecloneai-voice-output/jobs/c7e549dd-e02d-4f9c-91d3-f6844adae456/output.wav?Expires=1770447610&GoogleAccessId=firebase-adminsdk-fbsvc%40orangecloneai.iam.gserviceaccount.com&Signature=R51KUQBz6ostTBkKe00oZhrE%2FCa%2F4PUyLUM2zvnhdq%2Bu1mF3RSUSqKO7%2Bf64Rcc%2F7mEiWTnyurKGiGb%2Bb54qxUZXFjlc2jy3JTTag0k2x%2FwBEZzGAmR5TRXgCyEJNkvlCrCkzXEKLr7%2By%2BhzTLKceYoGyteFFeBFrNSIO5LNftduNmtZTr8idsLTdoDRPVgT%2FPoK05I5FTzuUL%2FTAQfa61IXGGIsOj6y%2FoONTessNLnfq1ery2tTJVekttWCe54v8pGpwY2w2aNiRw7lgrM%2FNibU8y%2FVH67uAvSQW3exw7rO4TFtmetPalaAwY0XFO7YTPP0DXjv2KSPPjqhov59aw%3D%3D"
   }
 }

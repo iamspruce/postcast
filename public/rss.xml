@@ -27,6 +27,18 @@
     <itunes:image href="https://spruceemmanuel.com/podcast/podcast-cover.png" />
     
     <item>
+      <title>How TCP Turns Round Trip Time and Jitter into Packet Loss</title>
+      <description>How TCP Turns Round Trip Time and Jitter into Packet Loss 
+                . Read the full article at https://www.freecodecamp.org/news/how-tcp-turns-round-trip-time-and-jitter-into-packet-loss/. Original article: https://www.freecodecamp.org/news/how-tcp-turns-round-trip-time-and-jitter-into-packet-loss/</description>
+      <guid isPermaLink="false">https://www.freecodecamp.org/news/how-tcp-turns-round-trip-time-and-jitter-into-packet-loss/</guid>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 GMT</pubDate>
+      <itunes:author>Syeda Maham Fahim</itunes:author>
+      <itunes:subtitle>How TCP Turns Round Trip Time and Jitter into Packet Loss</itunes:subtitle>
+      <itunes:summary>How TCP Turns Round Trip Time and Jitter into Packet Loss 
+                . Read the full article at https://www.freecodecamp.org/news/how-tcp-turns-round-trip-time-and-jitter-into-packet-loss/.</itunes:summary>
+      <enclosure url="https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-02-06/how-tcp-turns-round-trip-time-and-jitter-into-packet-loss.mp3" length="45171244" type="audio/mpeg" />
+    </item>
+    <item>
       <title>How to Chat with Your PDF Using Retrieval Augmented Generation</title>
       <description>How to Chat with Your PDF Using Retrieval Augmented Generation 
                 . Read the full article at https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/. Original article: https://www.freecodecamp.org/news/how-to-chat-with-your-pdf-using-retrieval-augmented-generation/</description>
