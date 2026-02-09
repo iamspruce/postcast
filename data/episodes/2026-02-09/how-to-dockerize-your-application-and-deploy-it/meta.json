@@ -1,0 +1,35 @@
+{
+  "title": "How to Dockerize Your Application and Deploy It",
+  "description": "How to Dockerize Your Application and Deploy It \n                . Read the full article at https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/.",
+  "guid": "https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/",
+  "sourceUrl": "https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/",
+  "sourceId": "freecodecamp",
+  "author": "Manish Shivanandhan",
+  "pubDate": "2026-02-09T07:12:07.401Z",
+  "enclosureUrl": "https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-02-09/how-to-dockerize-your-application-and-deploy-it.mp3",
+  "enclosureLength": 30099244,
+  "score": 6,
+  "breakdown": [
+    {
+      "id": "scoreByWordCount",
+      "delta": 3
+    },
+    {
+      "id": "scoreByHeadings",
+      "delta": 3
+    },
+    {
+      "id": "scoreByFreshness",
+      "delta": 1
+    },
+    {
+      "id": "penalizeRoundups",
+      "delta": 0
+    },
+    {
+      "id": "penalizeTooManyLinks",
+      "delta": -1
+    }
+  ],
+  "notes": []
+}

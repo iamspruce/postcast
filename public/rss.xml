@@ -27,6 +27,18 @@
     <itunes:image href="https://spruceemmanuel.com/podcast/podcast-cover.png" />
     
     <item>
+      <title>How to Dockerize Your Application and Deploy It</title>
+      <description>How to Dockerize Your Application and Deploy It 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/. Original article: https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/</description>
+      <guid isPermaLink="false">https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/</guid>
+      <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+      <itunes:author>Manish Shivanandhan</itunes:author>
+      <itunes:subtitle>How to Dockerize Your Application and Deploy It</itunes:subtitle>
+      <itunes:summary>How to Dockerize Your Application and Deploy It 
+                . Read the full article at https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/.</itunes:summary>
+      <enclosure url="https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-02-09/how-to-dockerize-your-application-and-deploy-it.mp3" length="30099244" type="audio/mpeg" />
+    </item>
+    <item>
       <title>How TCP Turns Round Trip Time and Jitter into Packet Loss</title>
       <description>How TCP Turns Round Trip Time and Jitter into Packet Loss 
                 . Read the full article at https://www.freecodecamp.org/news/how-tcp-turns-round-trip-time-and-jitter-into-packet-loss/. Original article: https://www.freecodecamp.org/news/how-tcp-turns-round-trip-time-and-jitter-into-packet-loss/</description>
