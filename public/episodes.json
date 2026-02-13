@@ -1,5 +1,40 @@
 [
   {
+    "title": "How to Build a Real-Time Public Speaking and Presentation Coach",
+    "description": "How to Build a Real-Time Public Speaking and Presentation Coach \n                . Read the full article at https://www.freecodecamp.org/news/how-to-build-a-real-time-public-speaking-and-presentation-coach/.",
+    "guid": "https://www.freecodecamp.org/news/how-to-build-a-real-time-public-speaking-and-presentation-coach/",
+    "sourceUrl": "https://www.freecodecamp.org/news/how-to-build-a-real-time-public-speaking-and-presentation-coach/",
+    "sourceId": "freecodecamp",
+    "author": "Timothy Olanrewaju",
+    "pubDate": "2026-02-13T00:00:00.000Z",
+    "enclosureUrl": "https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-02-13/how-to-build-a-real-time-public-speaking-and-presentation-coach.mp3",
+    "enclosureLength": 44473644,
+    "score": 10,
+    "breakdown": [
+      {
+        "id": "scoreByWordCount",
+        "delta": 5
+      },
+      {
+        "id": "scoreByHeadings",
+        "delta": 3
+      },
+      {
+        "id": "scoreByFreshness",
+        "delta": 3
+      },
+      {
+        "id": "penalizeRoundups",
+        "delta": 0
+      },
+      {
+        "id": "penalizeTooManyLinks",
+        "delta": -1
+      }
+    ],
+    "notes": []
+  },
+  {
     "title": "How to Dockerize Your Application and Deploy It",
     "description": "How to Dockerize Your Application and Deploy It \n                . Read the full article at https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/.",
     "guid": "https://www.freecodecamp.org/news/how-to-dockerize-your-application-and-deploy-it/",
