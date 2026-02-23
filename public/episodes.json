@@ -1,5 +1,40 @@
 [
   {
+    "title": "How to Install Java on Mac in 2026",
+    "description": "How to Install Java on Mac in 2026 \n                . Read the full article at https://www.freecodecamp.org/news/how-to-install-java-on-mac/.",
+    "guid": "https://www.freecodecamp.org/news/how-to-install-java-on-mac/",
+    "sourceUrl": "https://www.freecodecamp.org/news/how-to-install-java-on-mac/",
+    "sourceId": "freecodecamp",
+    "author": "Daniel Kehoe",
+    "pubDate": "2026-02-23T00:00:00.000Z",
+    "enclosureUrl": "https://7d84e3a735b6ae639dc25354e60bac50.r2.cloudflarestorage.com/episodes/2026-02-23/how-to-install-java-on-mac-in-2026.mp3",
+    "enclosureLength": 35161644,
+    "score": 6,
+    "breakdown": [
+      {
+        "id": "scoreByWordCount",
+        "delta": 3
+      },
+      {
+        "id": "scoreByHeadings",
+        "delta": 3
+      },
+      {
+        "id": "scoreByFreshness",
+        "delta": 1
+      },
+      {
+        "id": "penalizeRoundups",
+        "delta": 0
+      },
+      {
+        "id": "penalizeTooManyLinks",
+        "delta": -1
+      }
+    ],
+    "notes": []
+  },
+  {
     "title": "How to Take Machine Learning Beyond Python Notebooks with These Helpful Tools",
     "description": "How to Take Machine Learning Beyond Python Notebooks with These Helpful Tools \n                . Read the full article at https://www.freecodecamp.org/news/how-to-take-machine-learning-beyond-python-notebooks-with-these-helpful-tools/.",
     "guid": "https://www.freecodecamp.org/news/how-to-take-machine-learning-beyond-python-notebooks-with-these-helpful-tools/",
